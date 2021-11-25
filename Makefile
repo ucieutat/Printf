@@ -6,11 +6,11 @@
 #    By: ucieutat <cieutatulin@gmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/20 21:49:41 by ucieutat          #+#    #+#              #
-#    Updated: 2021/11/24 15:18:08 by ucieutat         ###   ########.fr        #
+#    Updated: 2021/11/25 01:21:35 by ucieutat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = ft_printf.c print_flags.c tools.c
+SRCS = ft_printf.c tools.c
 
 OBJS = ${SRCS:.c=.o}
 
@@ -34,10 +34,10 @@ all: ${NAME}
 clean:
 	rm -rf ${OBJS}
 
-cleanf: clean
+fclean: clean
 	rm -rf ${NAME}
 
 
-re:	cleanf all
+re:	fclean all
 
-.PHONY: all clean cleanf re
+.PHONY: all clean fclean re

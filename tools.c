@@ -6,18 +6,19 @@
 /*   By: ucieutat <cieutatulin@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:17:03 by ucieutat          #+#    #+#             */
-/*   Updated: 2021/11/24 18:50:49 by ucieutat         ###   ########.fr       */
+/*   Updated: 2021/11/25 01:21:03 by ucieutat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void	ft_putchar(char c)
+int	ft_putchar(char c)
 {
 	write(1, &c, 1);
+	return (1);
 }
 
-void	ft_putstr(char *s)
+int	ft_putstr(char *s)
 {
 	int	i;
 
@@ -25,13 +26,16 @@ void	ft_putstr(char *s)
 	while (s[i])
 		i++;
 	write(1, s, i);
+	return (i);
 }
 
-void	ft_putnbr(int n)
+int	ft_putnbr(int n)
 {
 	long	nb;
+	int		i;
 
 	nb = n;
+	i = 0;
 	if (nb < 0)
 	{
 		nb = -nb;
@@ -58,13 +62,4 @@ void	ft_puthex(uint64_t u, char *base)
 		u %= i;
 	}
 	ft_putchar(base[u]);
-}
-
-void	ft_putptr(va_list ap)
-{
-	uint64_t	u;
-
-	u = va_arg(ap, uint64_t);
-	write(1, "0x", 2);
-	ft_puthex(u, "0123456789abcdef");
 }

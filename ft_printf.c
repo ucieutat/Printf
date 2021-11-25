@@ -6,58 +6,46 @@
 /*   By: ucieutat <cieutatulin@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 14:39:27 by ucieutat          #+#    #+#             */
-/*   Updated: 2021/11/24 18:50:49 by ucieutat         ###   ########.fr       */
+/*   Updated: 2021/11/25 01:18:42 by ucieutat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
 
-t_flag	which_flag(char c)
+int	which_flag(char c, va_list ap)
 {
 	if (c == 'c')
-		return (print_char((char)va_arg(ap, int));
+		ft_putchar((char)va_arg(ap, int));
 	else if (c == 's')
-		return (print_string((char *)va_arg(ap, char *));
+		ft_putstr((char *)va_arg(ap, char *));
 	else if (c == 'p')
-		return (pointer);
+	{
+		write(1, "0x", 2);
+		ft_puthex(va_arg(ap, uint64_t), "0123456789abcdef");
+	}
 	else if (c == 'd')
-		return (e_digit);
+		ft_putnbr(va_arg(ap, int));
 	else if (c == 'i')
-		return (e_int);
+		ft_putnbr(va_arg(ap, int));
 	else if (c == 'u')
-		return (e_unsigned);
+		ft_puthex(va_arg(ap, unsigned int), "0123456789");
 	else if (c == 'x')
-		return (e_hex);
+		ft_puthex(va_arg(ap, unsigned int), "0123456789abcdef");
+	else if (c == 'X')
+		ft_puthex(va_arg(ap, unsigned int), "0123456789ABCDEF");
 	else if (c == '%')
-		return (e_percent);
-	else
-		return (e_other);
-}
-
-void	which_action (t_flag flag, va_list ap)
-{
-	if (flag == e_char)
-		print_char(ap);
-	else if (flag == e_string)
-		print_string(ap);
-	else if (flag == e_pointer)
-		ft_putptr(ap);
-	else if (flag == e_digit || flag == e_int)
-		print_digit(ap);
-	else if (flag == e_unsigned)
-		print_unsigned(ap);
-	else if (flag == e_hex)
-		print_hex(ap);
-	else if (flag == e_percent)
 		write(1, "%", 1);
+	else
+		return (0);
+	return (1);
 }
 
 int		ft_printf(char *str, ...)
 {
 	va_list	ap;
 	int		i;
-	t_flag	flag;
+	int		flag;
 	
 	va_start(ap, str);
 	i = -1;
@@ -65,11 +53,9 @@ int		ft_printf(char *str, ...)
 	{
 		if (str[i] == '%')
 		{
-			flag = which_flag(str[i+1]);
-			if (flag == e_other)
+			flag = which_flag(str[i+1], ap);
+			if (!flag)
 				return (0);
-			else
-				which_action(flag, ap);
 			i++;
 		}
 		else
@@ -83,10 +69,10 @@ int main()
 {
 	char t;
 	char s[6] = "coucou";
-	int	d;;
+	int	d;
 
 	t = 'r';
 	d = 122;
-	printf("%p on est le %x octobre et la lettre du jour est : %c\n", s, d, t);
-	ft_printf("%p on est le %x octobre et la lettre du jour est : %c\n", s, d, t);
+	printf("%s on est le %X octobre et la lettre du %% jour est : %c\n", s, d, t);
+	ft_printf("%s on est le %X octobre et la lettre %%  du jour est : %c\n", s, d, t);
 }
