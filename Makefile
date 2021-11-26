@@ -6,7 +6,7 @@
 #    By: ucieutat <cieutatulin@gmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/20 21:49:41 by ucieutat          #+#    #+#              #
-#    Updated: 2021/11/25 01:21:35 by ucieutat         ###   ########.fr        #
+#    Updated: 2021/11/26 11:08:27 by ucieutat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,13 +20,13 @@ FLAGS = -Wall -Wextra -Werror
 
 CC = gcc
 
-NAME = ft_printf
+NAME = libftprintf.a
 
 .c.o:
 	${CC} ${FLAGS} -c $< -o ${<:.c=.o}
 
 ${NAME}: ${OBJS}
-	${CC} ${FLAGS} ${OBJS} -o ${NAME}
+	ar -rcs ${NAME} ${OBJS}
 	
 
 all: ${NAME}
