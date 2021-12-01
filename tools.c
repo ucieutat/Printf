@@ -6,7 +6,7 @@
 /*   By: ucieutat <cieutatulin@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:17:03 by ucieutat          #+#    #+#             */
-/*   Updated: 2021/11/26 12:53:38 by ucieutat         ###   ########.fr       */
+/*   Updated: 2021/12/01 17:25:31 by ucieutat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	ft_putstr(char *s)
 {
 	int	i;
 
+	if (!s)
+		return (write (1, "(null)", 6));
 	i = 0;
 	while (s[i])
 		i++;
@@ -70,7 +72,7 @@ int	ft_puthex(uint64_t u, char *base)
 
 int	ft_putptr(uint64_t u)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (u)
@@ -79,6 +81,6 @@ int	ft_putptr(uint64_t u)
 		count = ft_puthex(u, "0123456789abcdef") + 2;
 	}
 	else
-		count = ft_putstr("(nil)");
+		count = ft_putstr("0x0");
 	return (count);
 }

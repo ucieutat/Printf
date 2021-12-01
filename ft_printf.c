@@ -6,22 +6,20 @@
 /*   By: ucieutat <cieutatulin@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 14:39:27 by ucieutat          #+#    #+#             */
-/*   Updated: 2021/11/26 13:20:11 by ucieutat         ###   ########.fr       */
+/*   Updated: 2021/12/01 17:22:17 by ucieutat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <unistd.h>
-
 
 int	which_flag(char c, va_list ap)
 {
 	if (c == 'c')
-		return(ft_putchar((char)va_arg(ap, int)));
+		return (ft_putchar((char)va_arg(ap, int)));
 	else if (c == 's')
-		return(ft_putstr((char *)va_arg(ap, char *)));
+		return (ft_putstr((char *)va_arg(ap, char *)));
 	else if (c == 'p')
-		return(ft_putptr(va_arg(ap, uint64_t)));
+		return (ft_putptr(va_arg(ap, uint64_t)));
 	else if (c == 'd' || c == 'i')
 		return (ft_putnbr(va_arg(ap, int)));
 	else if (c == 'u')
@@ -40,12 +38,12 @@ int	which_flag(char c, va_list ap)
 	return (1);
 }
 
-int		ft_printf(const char *str, ...)
+int	ft_printf(const char *str, ...)
 {
 	va_list	ap;
 	int		i;
 	int		count;
-	
+
 	va_start(ap, str);
 	i = -1;
 	count = 0;

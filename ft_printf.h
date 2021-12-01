@@ -6,17 +6,17 @@
 /*   By: ucieutat <cieutatulin@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 15:23:26 by ucieutat          #+#    #+#             */
-/*   Updated: 2021/11/26 11:52:24 by ucieutat         ###   ########.fr       */
+/*   Updated: 2021/11/28 15:52:40 by ucieutat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <unistd.h>
 # include <stdarg.h>
-# include <stdio.h>
 # include <stdint.h>
+# include <unistd.h>
 
 int	ft_printf(const char *str, ...);
 int	which_flag(char c, va_list ap);
